@@ -1,16 +1,14 @@
-import React from 'react';
-import {SafeAreaView, View, Text} from 'react-native';
-import tailwind from 'tailwind-rn';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './screens/HomeScreen';
+const Stack = createStackNavigator();
 
 const App = () => (
-	<SafeAreaView style={tailwind('h-full bg-gray-100')}>
-		<View style={tailwind('pt-12 items-center')}>
-			<View style={tailwind('bg-blue-200 px-3 py-1 rounded-full')}>
-				<Text style={tailwind('text-blue-800 font-semibold')}>
-					Hello David
-				</Text>
-			</View>
-		</View>
-	</SafeAreaView>
+  <NavigationContainer>
+      <Stack.Navigator>
+          <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
 );
 export default App;
