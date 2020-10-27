@@ -1,22 +1,18 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, ScrollView, TouchableOpacity } from 'react-native';
+import _ from 'lodash';
+import ListItem from '../components/ListItem';
+import tailwind from 'tailwind-rn';
 
-const DetailsScreen = ({navigation}) => {
+const DetailsScreen = ( {navigation, extraData }) => {
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Details Screen</Text>
-            <Button
-                title="Go to Details... again"
-                onPress={() => navigation.push('Details')}
-                
-            />
-            <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-            <Button title="Go back" onPress={() => navigation.goBack()} />
-            <Button
-                title="Go back to first screen in stack"
-                onPress={() => navigation.popToTop()}
-            />
-        </View>
+        <ScrollView style={tailwind('p-8')}>
+            {_.map(extraData, exhi => {
+                if (exhi.is_active != 0) return (
+                    <ListItem key={exhi.id} data={exhi} />
+                )
+            })}
+        </ScrollView>
     );
 }
 export default DetailsScreen;
