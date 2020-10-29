@@ -1,28 +1,30 @@
 import React from 'react';
-import { SafeAreaView, View, Text, Button } from 'react-native';
+import { SafeAreaView, View, Text, TouchableOpacity } from 'react-native';
 import tailwind from 'tailwind-rn';
 
-const HomeScreen = ({navigation, updateHeaderTitle, ...props}) => {
+const HomeScreen = ({navigation, updateExhibitionsScreenTitle, ...props}) => {
     
     return (
-        <SafeAreaView style={tailwind('h-full bg-gray-100')}>
-            <View style={tailwind('pt-12 items-center')}>
-                <View style={tailwind('px-3 py-1 rounded-full')}>
-                    <Text style={tailwind('text-blue-800 font-semibold')}>
-                        In this App you can 
-                    </Text>
-                    <Button
-                        title="Find Future Exhibitions"
-                        onPress={() => (updateHeaderTitle('Future Exhibitions'), navigation.navigate('Details', {active: true}))}
-                    />
-                    <Text>OR</Text>
-                    <Button
-                        title="Explore Past Exhibitions"
-                        onPress={() => (updateHeaderTitle('Past Exhibitions'), navigation.navigate('Details', {active: false}))}
-                    />
-                </View>
+        <View style={tailwind(' bg-gray-200  pb-16 pt-32 h-full flex flex-col items-center justify-between')}>
+            <Text style={tailwind('w-3/4 text-center text-2xl text-gray-900')}>
+                Welcome to Cooperhewitt Exhibitions Guide
+            </Text>
+            <View style={tailwind('flex flex-col pb-16  justify-center items-center w-full px-8 ')}>
+                <Text style={tailwind('text-gray-600 font-semibold text-lg mb-8')}>In this App you can</Text>
+                <TouchableOpacity
+                    style={tailwind('border border-gray-300 p-4 rounded bg-gray-800 w-full text-center')}
+                    onPress={() => (updateExhibitionsScreenTitle('Future Exhibitions'), navigation.navigate('Exhibitions', {active: true}))}
+                ><Text style={tailwind('w-full text-center text-gray-100 text-lg')}>Find Future Exhibitions</Text></TouchableOpacity>
+                <Text style={tailwind('text-gray-600 font-semibold  my-8')}>OR</Text>
+                <TouchableOpacity
+                    style={tailwind('border border-gray-300 p-4 rounded bg-gray-800 w-full text-center')}
+                    onPress={() => (updateExhibitionsScreenTitle('Past Exhibitions'), navigation.navigate('Exhibitions', {active: false}))}
+                ><Text style={tailwind('w-full text-center text-gray-100 text-lg')}>Explore Past Exhibitions</Text></TouchableOpacity>
             </View>
-        </SafeAreaView>
+            <Text style={tailwind('w-3/4 text-center text-xs text-gray-600')}>
+                Developed by David Sarvasidze as part of the interview process for Goo Apps
+            </Text>
+        </View>
     );
 }
 export default HomeScreen;
