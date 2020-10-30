@@ -5,6 +5,7 @@ import _ from 'lodash';
 import PastExhibition from '../components/PastExhibition';
 import FutureExhibition from '../components/FutureExhibition';
 import LoadingIndicator from '../components/LoadingIndicator';
+import {apiConfig} from '../config/config';
 
 const ExhibitionScreen = ({route, navigation, extraData, ...props}) => {
     const [isLoading, setIsLoading] = useState(true);
@@ -18,7 +19,7 @@ const ExhibitionScreen = ({route, navigation, extraData, ...props}) => {
         if(route.params.active){
             setIsLoading(false);
         }else{
-            const url = `https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibitions.getObjects&access_token=93f17b32448732710beba88b1abc2e4d&exhibition_id=${route.params.itemId}&page=1&per_page=100`
+            const url = `${apiConfig.baseUrl}?method=cooperhewitt.exhibitions.getObjects&access_token=${apiConfig.accessToken}&exhibition_id=${route.params.itemId}&page=1&per_page=100`
             fetch(url, {signal: signal})
             .then((res) => res.json())
             .then((objData) => {

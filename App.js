@@ -6,6 +6,8 @@ import ExhibitionsScreen from './screens/ExhibitionsScreen';
 import ExhibitionScreen from './screens/ExhibitionScreen';
 import _ from 'lodash';
 import LoadingIndicator from './components/LoadingIndicator';
+import {apiConfig} from './config/config';
+
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -15,7 +17,7 @@ const App = () => {
   const [exhibitionScreenTitle, setExhibitionScreenTitle] = useState('');
 
   useEffect(() => {
-    const url = 'https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibitions.getList&access_token=93f17b32448732710beba88b1abc2e4d&page=1&per_page=100';
+    const url = `${apiConfig.baseUrl}?method=cooperhewitt.exhibitions.getList&access_token=${apiConfig.accessToken}&page=1&per_page=100`;
     fetch(url)
     .then((res) => res.json())
     .then((data) => {
