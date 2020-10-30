@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, Linking, StyleSheet } from 'react-native';
+import { View, Text, Image, Linking, StyleSheet, TouchableOpacity } from 'react-native';
 import _ from 'lodash';
 import tailwind from 'tailwind-rn';
 
@@ -17,10 +17,13 @@ const PastExhibition = (props) => {
                     <Text style={tailwind('font-bold mr-6')}>Ended:</Text>
                     <Text>{date_end}</Text>
                 </View>
-                <Text style={tailwind('text-blue-600 mt-4 ')}
-                    onPress={() => Linking.openURL(`${url}`)}>
-                    Find full article here.
-                </Text>
+
+                <TouchableOpacity
+                    onPress={() => Linking.openURL(`${url}`)}
+                    style={tailwind('border border-gray-300 p-3 mt-4 rounded-md bg-gray-800')}
+                >
+                    <Text style={tailwind('w-full text-center text-gray-100 text-xs')}>Find full article here.</Text>
+                </TouchableOpacity>
             </View>
 
             <View style={tailwind('w-full h-px mt-4 bg-gray-800')}></View>
@@ -45,11 +48,14 @@ const PastExhibition = (props) => {
                                     {obj.creditline != null ? <Text style={tailwind('italic mx-6')}>{obj.creditline}</Text> : null}
                                     {obj.description != null ? <Text style={tailwind('text-gray-800 mt-4 text-justify mx-6')}>{obj.description}</Text> : null}
                                 </View>
-                                <Text style={tailwind('text-blue-600 mt-8 w-full text-center')}
-                                    onPress={() => Linking.openURL(`${obj.url}`)}>
-                                    Find Out More
-                                </Text>
-                                <View style={tailwind('w-full h-px mt-8 bg-gray-800')}></View>
+
+                                <TouchableOpacity
+                                    onPress={() => Linking.openURL(`${obj.url}`)}
+                                    style={tailwind('border border-gray-300 p-3 mt-4 rounded-md bg-gray-800')}
+                                >
+                                    <Text style={tailwind('w-full text-center text-gray-100 text-xs')} >Find Out More</Text>
+                                </TouchableOpacity>
+                                <View style={tailwind('w-full h-px mt-6 bg-gray-800')}></View>
                             </View>
                         )
                     }

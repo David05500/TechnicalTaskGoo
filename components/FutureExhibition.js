@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Linking, StyleSheet } from 'react-native';
+import { View, Text, Linking, StyleSheet, TouchableOpacity } from 'react-native';
 import _ from 'lodash';
 import tailwind from 'tailwind-rn';
 
@@ -8,15 +8,16 @@ const FutureExhibition = (props) => {
     return (
         <View style={tailwind('w-full')}>
             <Text style={[styles.text]}>{text}</Text>
-            <View style={tailwind('flex flex-row mb-1')}>
+            <View style={tailwind('flex flex-row mb-1 mt-2')}>
                 <Text style={tailwind('font-bold mr-4')}>Start Date:</Text> 
-                <Text>{date_start}</Text>
+                <Text> {date_start}</Text>
             </View>
-            <View style={tailwind('w-full h-px mt-4 bg-gray-800')}></View>
-
-            <Text style={tailwind('text-blue-600 mb-8 mt-4 w-full text-center')}
+            <TouchableOpacity
                 onPress={() => Linking.openURL(`${url}`)}
-            >See full article</Text>
+                style={tailwind('border border-gray-300 p-3 mt-4 mb-6 rounded-md bg-gray-800')}
+            >
+                <Text style={tailwind('w-full text-center text-gray-100 text-xs')}>Find full article here.</Text>
+            </TouchableOpacity>
         </View>
     )
 };
